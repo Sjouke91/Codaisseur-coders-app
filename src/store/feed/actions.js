@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_URL } from "../../config";
 
 export function startLoading() {
-  console.log("got here 2");
   return {
     type: "START_LOADING",
   };
@@ -15,13 +15,9 @@ export function postsFetched(morePosts) {
 }
 
 export async function fetchNext5Posts(dispatch, getState) {
-  console.log("i got here 1");
-
   const data = getState();
 
-  const API_URL = `https://codaisseur-coders-network.herokuapp.com`;
   dispatch(startLoading());
-  console.log("this is state", data);
 
   try {
     const res = await axios.get(
@@ -31,7 +27,6 @@ export async function fetchNext5Posts(dispatch, getState) {
     const morePosts = res.data.rows;
 
     dispatch(postsFetched(morePosts));
-    console.log("this is moreposts", morePosts);
   } catch (e) {
     console.log("this is error:", e.message);
   }
