@@ -4,10 +4,20 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
+  console.log("this is payload", payload);
   switch (type) {
-    case "LOAD_POST":
-      return { ...state, ...payload };
-
+    case "START_LOADING": {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case "POST_FETCHED": {
+      return {
+        loading: false,
+        posts: [...state.posts, ...payload],
+      };
+    }
     default:
       return state;
   }
