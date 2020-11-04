@@ -1,0 +1,21 @@
+.postCard {
+  border: 1px solid rgb(53, 53, 53);
+  border-radius: 3px;
+  background-color: rgb(243, 243, 243);
+  width: 300px;
+  padding: 0px 30px;
+  margin: 10px;
+
+  .dateAndTags {
+    display: flex;
+    align-items: center;
+
+    .tag {
+      background-color: rgb(105, 105, 105);
+      color: white;
+      padding: 5px;
+      margin: 0px 5px;
+      border-radius: 5px;
+    }
+  }
+}

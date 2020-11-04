@@ -16,9 +16,6 @@ export default function PostsFeed() {
   async function fetchNext5Posts() {
     setData({ ...data, loading: true });
 
-    // TODO
-    // fetch next set of posts (use offset+limit),
-    //  and define the variable `morePosts`
     try {
       const res = await axios.get(
         `${API_URL}/posts?offset=${data.posts.length}&limit=5`
@@ -57,10 +54,15 @@ export default function PostsFeed() {
 
       {data.posts.map((p) => {
         return (
-          <div key={p.id}>
+          <div className="postCard" key={p.id}>
             <h3>{p.title}</h3>
-            <p>{p.content}</p>
-            <p>{p.createdAt}</p>
+            <div className="dateAndTags">
+              <p>{moment(p.createdAt).format("DD-MM-YYYY")}</p>
+
+              {p.tags.map((tag) => {
+                return <p className="tag">{tag.tag}</p>;
+              })}
+            </div>
           </div>
         );
       })}
