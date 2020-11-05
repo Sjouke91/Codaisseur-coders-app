@@ -22,7 +22,6 @@ export default function PostsFeed() {
       <h2>Recent posts</h2>
 
       {data.map((p) => {
-        console.log("this is id", p.id);
         return (
           <div className="postCard" key={p.id}>
             <Link to={`/post/${p.id}`}>
