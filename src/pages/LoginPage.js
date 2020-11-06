@@ -1,6 +1,6 @@
 // src/pages/LoginPage.js
 import React, { useState } from "react";
-import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/Auth/actions";
 import "./LoginPage.scss";

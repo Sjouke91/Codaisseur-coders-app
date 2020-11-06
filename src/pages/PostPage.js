@@ -1,21 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPost } from "../store/postPage/actions";
+import { fetchPost, addComment } from "../store/postPage/actions";
 import { selectFeedPost } from "../store/postPage/selector";
 import ReactMarkdown from "react-markdown";
+import { selectUser } from "../store/Auth/selector";
 
 export default function PostPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [comment, setComment] = useState("");
   const postData = useSelector(selectFeedPost);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchPost(id));
   }, [dispatch, id]);
 
-  console.log("this is postdata", postData);
+  function onClickSubmit(event) {
+    console.log("comment", comment);
+    event.preventDefault();
+    dispatch(addComment(comment, id));
+  }
 
   return (
     <div>
@@ -60,6 +67,24 @@ export default function PostPage() {
           )}
         </>
       )}
+      <div className="addComment">
+        <form>
+          <label>
+            Add comment:
+            <input
+              type="text"
+              onChange={(e) =>
+                setComment({
+                  message: e.target.value,
+                  user: user.name,
+                  date: new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+                })
+              }
+            ></input>
+          </label>
+          <button onClick={(e) => onClickSubmit(e)}>Submit</button>
+        </form>
+      </div>
     </div>
   );
 }

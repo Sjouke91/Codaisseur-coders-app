@@ -31,3 +31,23 @@ export function fetchPost(id) {
     );
   };
 }
+
+export function addComment(comment, id) {
+  return async function thunk(dispatch, getState) {
+    const jwt = getState().auth.accessToken;
+    console.log("jwt", jwt);
+    console.log("comment", comment);
+
+    await axios.post(
+      `${API_URL}/posts/${id}/comments`,
+      {
+        text: comment.message,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+  };
+}

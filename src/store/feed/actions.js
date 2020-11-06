@@ -16,6 +16,7 @@ export function postsFetched(morePosts) {
 
 export async function fetchNext5Posts(dispatch, getState) {
   const data = getState();
+  console.log("data", data.feed.posts.length);
 
   dispatch(startLoading());
 

@@ -27,6 +27,9 @@ export default function Toolbar() {
               </div>
             )}
           </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
         </ul>
       </nav>
     </div>

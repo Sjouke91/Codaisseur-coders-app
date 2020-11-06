@@ -15,7 +15,7 @@ export default function PostsFeed() {
 
   useEffect(() => {
     dispatch(fetchNext5Posts);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="PostsFeed">

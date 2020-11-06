@@ -1,7 +1,6 @@
 // src/store/auth/actions.js
 
 import axios from "axios";
-import { useDispatch } from "react-redux";
 
 // A thunk creator
 export function login(email, password) {
@@ -28,10 +27,12 @@ export function login(email, password) {
         dispatch(userLogedIn(user, jwt));
         localStorage.setItem("jwt", jwt);
       } catch (e) {
-        console.log(e.message);
+        console.log("is it here?", e.message);
+        localStorage.removeItem("jwt");
       }
     } catch (e) {
-      console.log("err", e.message);
+      console.log("is it here?", e.message);
+      localStorage.removeItem("jwt");
     }
   };
 }

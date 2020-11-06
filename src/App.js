@@ -14,7 +14,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(bootstrapLogin());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="app">
