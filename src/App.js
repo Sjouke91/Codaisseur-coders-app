@@ -10,12 +10,6 @@ import { useDispatch } from "react-redux";
 import { bootstrapLogin } from "./store/Auth/actions";
 
 export default function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(bootstrapLogin());
-  }, [dispatch]);
-
   return (
     <div className="app">
       <Toolbar />
